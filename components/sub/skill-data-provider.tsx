@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 
 type SkillDataProviderProps = {
-  src: string;
+  src: string | null;
   name: string;
   width: number;
   height: number;
@@ -39,7 +39,18 @@ export const SkillDataProvider = ({
       custom={index}
       transition={{ delay: index * animationDelay }}
     >
-      <Image src={`/skills/${src}`} width={width} height={height} alt={name} />
+      {src ? (
+        <Image
+          src={`/skills/${src}`}
+          width={width}
+          height={height}
+          alt={name}
+        />
+      ) : (
+        <div className="min-w-[100px] rounded-md border border-[#7042f88b] bg-[#03001459] px-4 py-3 text-center text-sm font-medium text-gray-200 shadow-[inset_0_0_12px_#bf97ff24] backdrop-blur-md">
+          {name}
+        </div>
+      )}
     </motion.div>
   );
 };

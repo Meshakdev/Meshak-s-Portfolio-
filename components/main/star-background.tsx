@@ -10,10 +10,12 @@ import * as random from "maath/random";
 import { useState, useRef, Suspense } from "react";
 import type { Points as PointsType } from "three";
 
+const STAR_COUNT = 5000;
+
 export const StarBackground = (props: PointsInstancesProps) => {
   const ref = useRef<PointsType | null>(null);
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 }),
+    random.inSphere(new Float32Array(STAR_COUNT * 3), { radius: 1.2 }),
   );
 
   useFrame((_state, delta) => {

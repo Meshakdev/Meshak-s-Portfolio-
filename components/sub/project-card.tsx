@@ -14,11 +14,13 @@ export const ProjectCard = ({
   description,
   link,
 }: ProjectCardProps) => {
+  const isExternal = link.startsWith("http");
+
   return (
     <Link
       href={link}
-      target="_blank"
-      rel="noreferrer noopener"
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noreferrer noopener" : undefined}
       className="relative overflow-hidden rounded-lg shadow-lg border border-[#2A0E61]"
     >
       <Image

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { LINKS, NAV_LINKS, SOCIALS } from "@/constants";
+import { NAV_LINKS, SOCIALS } from "@/constants";
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,7 +25,9 @@ export const Navbar = () => {
             draggable={false}
             className="cursor-pointer"
           />
-          <div className="hidden md:flex md:selffont-bold ml-[10px] text-gray-300">John Doe</div>
+          <div className="hidden md:flex md:selffont-bold ml-[10px] text-gray-300">
+            Meshak
+          </div>
         </Link>
 
         {/* Web Navbar */}
@@ -40,39 +42,33 @@ export const Navbar = () => {
                 {link.title}
               </Link>
             ))}
-
-            {/* Source Code */}
-            <Link
-              href={LINKS.sourceCode}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="cursor-pointer hover:text-[rgb(112,66,248)] transition"
-            >
-              Source Code
-            </Link>
           </div>
         </div>
 
         {/* Social Icons (Web) */}
-        <div className="hidden md:flex flex-row gap-5">
-          {SOCIALS.map(({ link, name, icon: Icon }) => (
-            <Link
-              href={link}
-              target="_blank"
-              rel="noreferrer noopener"
-              key={name}
-            >
-              <Icon className="h-6 w-6 text-white" />
-            </Link>
-          ))}
-        </div>
+        {SOCIALS.length > 0 && (
+          <div className="hidden md:flex flex-row gap-5">
+            {SOCIALS.map(({ link, name, icon: Icon }) => (
+              <Link
+                href={link}
+                target="_blank"
+                rel="noreferrer noopener"
+                key={name}
+              >
+                <Icon className="h-6 w-6 text-white" />
+              </Link>
+            ))}
+          </div>
+        )}
 
         {/* Hamburger Menu */}
         <button
+          type="button"
+          aria-label="Toggle navigation menu"
           className="md:hidden text-white focus:outline-none text-4xl"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          ☰
+          &#9776;
         </button>
       </div>
 
@@ -91,30 +87,23 @@ export const Navbar = () => {
                 {link.title}
               </Link>
             ))}
-            <Link
-              href={LINKS.sourceCode}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="cursor-pointer hover:text-[rgb(112,66,248)] transition text-center"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Source Code
-            </Link>
           </div>
 
           {/* Social Icons */}
-          <div className="flex justify-center gap-6 mt-6">
-            {SOCIALS.map(({ link, name, icon: Icon }) => (
-              <Link
-                href={link}
-                target="_blank"
-                rel="noreferrer noopener"
-                key={name}
-              >
-                <Icon className="h-8 w-8 text-white" />
-              </Link>
-            ))}
-          </div>
+          {SOCIALS.length > 0 && (
+            <div className="flex justify-center gap-6 mt-6">
+              {SOCIALS.map(({ link, name, icon: Icon }) => (
+                <Link
+                  href={link}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  key={name}
+                >
+                  <Icon className="h-8 w-8 text-white" />
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

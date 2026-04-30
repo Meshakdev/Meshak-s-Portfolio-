@@ -66,3 +66,10 @@
 html {
   scroll-behavior: smooth;
 }
+
+@media (pointer: fine) {
+  .spider-cursor-enabled,
+  .spider-cursor-enabled * {
+    cursor: none !important;
+  }
+}
